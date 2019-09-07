@@ -2,12 +2,12 @@ package com.chat.model;
 
 public class Config {
 	private String title;
-	private String nameBot;
-	private String url;
+	private String botName;
+	private String chatUrl;
 	private String cssClass;
 	private String position;
 	private boolean isAllowToMinimaize;
-	private boolean isAllowDrag;
+	private boolean isAllowToDrag;
 	private boolean isRequireName;
 	private boolean isShowDateTime;
 	private String network;
@@ -26,26 +26,26 @@ public class Config {
 
 
 
-	public String getNameBot() {
-		return nameBot;
+	public String getBotName() {
+		return botName;
 	}
 
 
 
-	public void setNameBot(String nameBot) {
-		this.nameBot = nameBot;
+	public void setBotName(String botName) {
+		this.botName = botName;
 	}
 
 
 
-	public String getUrl() {
-		return url;
+	public String getChatUrl() {
+		return chatUrl;
 	}
 
 
 
-	public void setUrl(String url) {
-		this.url = url;
+	public void setChatUrl(String chatUrl) {
+		this.chatUrl = chatUrl;
 	}
 
 
@@ -86,14 +86,14 @@ public class Config {
 
 
 
-	public boolean isAllowDrag() {
-		return isAllowDrag;
+	public boolean isAllowToDrag() {
+		return isAllowToDrag;
 	}
 
 
 
-	public void setAllowDrag(boolean isAllowDrag) {
-		this.isAllowDrag = isAllowDrag;
+	public void setAllowToDrag(boolean isAllowToDrag) {
+		this.isAllowToDrag = isAllowToDrag;
 	}
 
 
@@ -136,9 +136,9 @@ public class Config {
 
 	@Override
 	public String toString() {
-		return "Config [title=" + title + ", nameBot=" + nameBot + ", url=" + url + ", cssClass=" + cssClass
+		return "Config [title=" + title + ", nameBot=" + botName + ", url=" + chatUrl + ", cssClass=" + cssClass
 				+ ", position=" + position + ", isAllowToMinimaize=" + isAllowToMinimaize + ", isAllowDrag="
-				+ isAllowDrag + ", isRequireName=" + isRequireName + ", isShowDateTime=" + isShowDateTime + ", network="
+				+ isAllowToDrag + ", isRequireName=" + isRequireName + ", isShowDateTime=" + isShowDateTime + ", network="
 				+ network + "]";
 	}
 	

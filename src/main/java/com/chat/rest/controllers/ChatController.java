@@ -30,6 +30,17 @@ public class ChatController {
 	@PostMapping("/config")
 	public ResponseEntity<Void> createConfig(@Valid @RequestBody Config config) {
 		System.out.println("Set Config " + config);
+//		config = new Config();
+//		config.setTitle("chat");
+//		config.setBotName("vasya");
+//		config.setCssClass("1.csw");
+//		config.setChatUrl("http:");
+//		config.setPosition("left");
+//		config.setAllowToMinimaize(false);
+//		config.setAllowToDrag(false);
+//		config.setRequireName(false);
+//		config.setShowDateTime(true);
+//		config.setNetwork("fetch");
 		serviceManager.setConfig(config);
 		return new ResponseEntity<Void>(HttpStatus.CREATED);
 	}

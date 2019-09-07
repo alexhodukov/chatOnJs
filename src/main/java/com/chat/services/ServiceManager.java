@@ -45,15 +45,13 @@ private List<Message> messages;
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
-		System.out.println("Config from json " + config);
+
 		return config;
 	}
 	
 	public void setConfig(Config config) {
 		ObjectMapper objectMapper = new ObjectMapper();
 		objectMapper.configure(SerializationFeature.INDENT_OUTPUT, true);
-		
 		
 		try (PrintWriter writer = new PrintWriter("config.cf")) {
 			objectMapper.writeValue(writer, config);

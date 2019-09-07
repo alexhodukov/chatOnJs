@@ -11,7 +11,8 @@
 		<h1>Welcome to Chat on JS</h1>
 	</center>
 	
-	<p><a href="html/index.html">Chat</a></p>
+	<p><a href="chat.html">Chat</a></p>
+	<p><a href="config.html">Config</a></p>
 
 </body>
 </html>
