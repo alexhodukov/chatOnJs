@@ -1,0 +1,71 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="css/configStyle.css">
+  <script src="js/chatConfig.js" defer></script>
+</head>
+
+<p>
+<fieldset>
+  <legend>Chat Configurator</legend>
+
+  <table>
+    <tr>
+      <td>Chat title</td>
+      <td><input type="text" id="title"></td>
+    </tr>
+    <tr>
+      <td>Bot name</td>
+      <td><input type="text" id="botName"></td>
+    </tr>
+    <tr>
+      <td>Chat url</td>
+      <td><input type="text" id="chatUrl"></td>
+    </tr>
+    <tr>
+    <tr>
+      <td>CSS class</td>
+      <td><input type="text" id="cssClass"></td>
+    </tr>
+    <tr>
+      <td>Position</td>
+      <td>
+        <select id="position">
+          <option value="right">Right</option>
+          <option value="left">Left</option>
+        </select></p>
+      </td>
+    </tr>
+    <tr>
+      <td>UI</td>
+      <td>
+        <input type="checkbox" name="" id="allowToMinimaize">Allow to minimaize<br>
+        <input type="checkbox" name="" id="allowToDrag">Allow drag<br>
+        <input type="checkbox" name="" id="requireName">Require name<br>
+        <input type="checkbox" name="" id="showDateTime">Show date/time<br>
+      </td>
+    </tr>
+    <tr>
+      <td>Network</td>
+      <td>
+          <input type="radio" name="network" id="networkXhr" value="xhr" checked>XHR
+          <input type="radio" name="network" id="networkFetch" value="fetch">fetch
+      </td>
+    </tr>
+  </table>
+
+  <p>
+    User next code:
+  </p>
+  <pre>
+    <label id="label"></label>
+  </pre>
+
+</fieldset>
+  
+
+ 
+</body>
+</html>
