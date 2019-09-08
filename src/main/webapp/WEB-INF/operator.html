@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="css/operator.css">
+    <title>Title</title>
+</head>
+<body>
+<fieldset>
+    <legend>Operator's Dashboard</legend>
+    <fieldset id="leftColumn">
+        <input type="search" id="search">
+        <select id="sortBy" size="1">Sort By
+            <option disabled selected>Sort by</option>
+            <option value="id">ID</option>
+            <option value="Name">Name</option>
+        </select>
+        <select id="listUsers" size="40">
+            <option value="id">User1</option>
+            <option value="Name">User2</option>
+            <option value="id">User3</option>
+            <option value="Name">User4</option>
+        </select>
+    </fieldset>
+    <fieldset id="rightColumn">
+        <legend>Active</legend>
+        <button id="close">
+            <img src="icons/close.png"/>
+        </button>
+        <fieldset id="chatContainer">
+            <legend>Chat</legend>
+            <textarea id="correspondence" readonly></textarea>
+            <textarea id="input-message"></textarea>
+            <button id="send">send</button>
+        </fieldset>
+        <fieldset id="controlPanel">
+            <legend>Control</legend>
+        </fieldset>
+    </fieldset>
+</fieldset>
+<script src="js/chatConfig.js" defer></script>
+</body>
+</html>

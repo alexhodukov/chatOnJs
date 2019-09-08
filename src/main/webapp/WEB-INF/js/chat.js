@@ -211,7 +211,6 @@ function askUserName() {
         name = prompt("Please, enter your name", "").trim();
     }
     userName = name;
-    console.log(userName);
 }
 
 var isChatMinimaize = JSON.parse(sessionStorage.getItem("chatMinimaize"));
@@ -239,7 +238,6 @@ function chatMaximaize() {
 btnSend.addEventListener("click", function() {
     if (inputMessage.value.trim() != "") {
         var message = createMessage(inputMessage.value, userName);
-        console.log("userName " + userName);
         saveMessage(message);
         addMessage(message);
         

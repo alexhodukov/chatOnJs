@@ -6,6 +6,7 @@ public class Message {
 	private String message;
 	private Date date;
 	private String from;
+	private int to;
 	
 	public Message() {
 	}
@@ -34,6 +35,19 @@ public class Message {
 		this.from = from;
 	}
 
+	public int getTo() {
+		return to;
+	}
+
+	public void setTo(int to) {
+		this.to = to;
+	}
+
+	@Override
+	public String toString() {
+		return "Message [message=" + message + ", date=" + date + ", from=" + from + ", to=" + to + "]";
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -41,6 +55,7 @@ public class Message {
 		result = prime * result + ((date == null) ? 0 : date.hashCode());
 		result = prime * result + ((from == null) ? 0 : from.hashCode());
 		result = prime * result + ((message == null) ? 0 : message.hashCode());
+		result = prime * result + to;
 		return result;
 	}
 
@@ -68,11 +83,10 @@ public class Message {
 				return false;
 		} else if (!message.equals(other.message))
 			return false;
+		if (to != other.to)
+			return false;
 		return true;
 	}
 
-	@Override
-	public String toString() {
-		return "Message [message=" + message + ", date=" + date + ", from=" + from + "]";
-	}
+
 }

@@ -1,11 +1,13 @@
 package com.chat.rest.controllers;
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,9 +15,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.chat.model.Config;
 import com.chat.model.Message;
+import com.chat.model.User;
 import com.chat.services.ServiceManager;
-
-
 
 @RestController
 @RequestMapping("/chat")
@@ -52,19 +53,37 @@ public class ChatController {
 		return new ResponseEntity<Config>(config, HttpStatus.OK);
 	}
 	
+	@PostMapping("/register")
+	public ResponseEntity<Integer> registerUser(@RequestBody User user) {
+		int id = ServiceManager.generateIdUser();
+		user.setId(id);
+		System.out.println("Register User " + user);
+		return new ResponseEntity<Integer>(id, HttpStatus.CREATED);
+	}
 	
-	@PostMapping("/message")
-	public ResponseEntity<Void> createMessage(@RequestBody Message msg) {
-		System.out.println("Message " + msg);
-		serviceManager.addMessage(msg);
+	@PostMapping("/sendMessage")
+	public ResponseEntity<Void> sendMessage(@RequestBody Message message) {
+		int id = message.getTo();
+		if (id == 1) {
+			serviceManager.addMessageForAdmin(message);
+		} else {
+			serviceManager.addMessageForUser(message);
+		}
 		return new ResponseEntity<Void>(HttpStatus.CREATED);
 	}
-
-	@GetMapping("/messages")
-	public ResponseEntity<List<Message>> listAllMessages() {
-		List<Message> list = serviceManager.getMessages();
-		System.out.println("messages " + list);
+	
+	@GetMapping("/messages/{id}")
+	public ResponseEntity<List<Message>> getCorrespondence(@PathVariable("id") Integer id) {
+		List<Message> list = new ArrayList<>(serviceManager.getCorrespondence(id));
+		System.out.println("Correspondence " + list);
 		return new ResponseEntity<List<Message>>(list, HttpStatus.OK);
+	}
+	
+	@GetMapping("/users")
+	public ResponseEntity<List<User>> getUsers() {
+		List<User> list = serviceManager.getUsers();
+		System.out.println("Users " + list);
+		return new ResponseEntity<List<User>>(list, HttpStatus.OK);
 	}
 	
 }

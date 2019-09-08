@@ -1,0 +1,118 @@
+#leftColumn {
+    width: 180px;
+    height: 580px;
+    display: block;
+    border: 2px solid green;
+    margin: 5px;
+    padding: 10px;
+    position: relative;
+    float: left;
+}
+
+#rightColumn {
+    /*width: 800px;*/
+    height: 585px;
+    display: block;
+    border: 2px solid green;
+    margin: 5px;
+    position: relative;
+    /*float: right;*/
+}
+
+#search {
+    width: 170px;
+    margin: 5px;
+    /*height: 20px;*/
+}
+
+#sortBy {
+    width: 170px;
+    border: 1px solid black;
+    margin: 5px;
+    margin-right: 2px;
+    display: block;
+    float: left;
+    resize: none;
+
+}
+
+#listUsers {
+    width: 170px;
+    height: 430px;
+    border: 1px solid black;
+    margin: 5px;
+    margin-right: 2px;
+    padding: 5px;
+    display: block;
+    float: left;
+    resize: none;
+}
+
+#close {
+    position: absolute;
+    right: -5px;
+    top: -5px;
+    outline: 5px solid #fff;
+}
+
+#chatContainer {
+    width: 350px;
+    height: 530px;
+    display: block;
+    border: 2px solid green;
+    margin: 5px;
+    padding: 10px;
+    position: relative;
+    float: left;
+}
+
+#controlPanel {
+    height: 530px;
+    display: block;
+    border: 2px solid green;
+    margin: 5px;
+    padding: 10px;
+    position: relative;
+    /*float: left;*/
+}
+
+#correspondence {
+    width: 330px;
+    height: 350px;
+    border: 1px solid black;
+    margin: 5px;
+    margin-right: 2px;
+    padding: 5px;
+    display: block;
+    float: left;
+    resize: none;
+}
+
+#input-message {
+    width: 330px;
+    height: 75px;
+    border: 1px solid black;
+    margin: 5px;
+    margin-right: 2px;
+    padding: 5px;
+    display: block;
+    float: left;
+    resize: none;
+}
+
+#send {
+    width: 150px;
+    height: 30px;
+    border: 1px solid black;
+    margin: 5px;
+    margin-left: 2px;
+    padding: 5px;
+    float: left;
+    top: 0px;
+    box-shadow: 2px 2px 1px 1px gray;
+}
+
+button:active {
+    transform: scale(0.98);
+    background: rgb(219, 212, 212);
+}
