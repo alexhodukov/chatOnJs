@@ -9,7 +9,7 @@
 	
 		<servlet>
 		<servlet-name>Controller</servlet-name>
-		<servlet-class>com.chat.servlets.Controller</servlet-class>
+		<servlet-class>com.chat.servlets.ControllerServlet</servlet-class>
 <!-- 		<async-supported>true</async-supported> -->
 	</servlet>
 

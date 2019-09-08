@@ -4,6 +4,8 @@ package com.chat.rest.controllers;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.chat.model.Config;
 import com.chat.model.Message;
 import com.chat.model.User;
+import com.chat.model.UserDto;
 import com.chat.services.ServiceManager;
 
 @RestController
@@ -54,9 +57,13 @@ public class ChatController {
 	}
 	
 	@PostMapping("/register")
-	public ResponseEntity<Integer> registerUser(@RequestBody User user) {
+	public ResponseEntity<Integer> registerUser(@Valid @RequestBody UserDto userDto) {
 		int id = ServiceManager.generateIdUser();
-		user.setId(id);
+		User user = new User(id, userDto.getName());
+		if ("User".equals(user.getName())) {
+			user.setName(user.getName() + id);
+		}
+		serviceManager.addUser(user);
 		System.out.println("Register User " + user);
 		return new ResponseEntity<Integer>(id, HttpStatus.CREATED);
 	}

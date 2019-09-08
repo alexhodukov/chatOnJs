@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 
 import com.chat.model.Message;
 import com.chat.services.ServiceManager;
@@ -24,7 +25,7 @@ public class ControllerServlet extends HttpServlet {
 	@Override
 	public void init() throws ServletException {
 		System.out.println("ControllerServlet.init()");
-//		SpringBeanAutowiringSupport.processInjectionBasedOnCurrentContext(this);
+		SpringBeanAutowiringSupport.processInjectionBasedOnCurrentContext(this);
 //		serviceManager = server.getHttpMsgHandler();
 	}
 	
@@ -32,14 +33,14 @@ public class ControllerServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		int id = Integer.parseInt(req.getParameter("id"));
-
+		
 		resp.setContentType("application/json");
 		PrintWriter out;
 
 		try {	
 			out = resp.getWriter();
 			List<Message> listMsg = new ArrayList<>(serviceManager.getNewMessages(id));
-
+			System.out.println("listMsg " + listMsg);
 			ObjectMapper map = new ObjectMapper();
 			String json = map.writeValueAsString(listMsg);
 			out.write(json);

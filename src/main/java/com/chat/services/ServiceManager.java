@@ -23,11 +23,11 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 
 public class ServiceManager {
-	private static final int timeOutWaiting = 30_000;
+	private static final int timeOutWaiting = 10_000;
 	private Map<Integer, User> users;
 	private Map<Integer, Queue<Message>> messagesToUsers;
 	private Map<Integer, Queue<Message>> messagesToAdmin;
-	private static AtomicInteger incIdUser = new AtomicInteger(); 
+	private static AtomicInteger incIdUser = new AtomicInteger(1); 
 	
 	public ServiceManager() {
 		this.users = Collections.synchronizedMap(new HashMap<>());
@@ -49,7 +49,9 @@ public class ServiceManager {
 			synchronized (que) {
 				if (que != null) {
 					que.add(msg);
+					System.out.println("AddMesageForUser.que " + que);
 					que.notifyAll();
+					
 				}
 			}	
 		}	
@@ -74,7 +76,7 @@ public class ServiceManager {
 		} else {
 			que = messagesToUsers.get(id);	
 		}
-		
+		System.out.println("que " + que);
 		Queue<Message> queResult = new LinkedList<>();
 		if (que != null) {
 			synchronized (que) {
@@ -94,7 +96,9 @@ public class ServiceManager {
 						}
 					}
 				}
-				users.get(id).addMessages(queResult);
+				if (!queResult.isEmpty()) {
+					users.get(id).addMessages(queResult);	
+				}
 			}	
 		}	
 		return queResult;

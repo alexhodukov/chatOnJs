@@ -3,9 +3,15 @@ package com.chat.model;
 import java.util.LinkedList;
 import java.util.Queue;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+
 public class User {
+	@JsonIgnore
 	private int id;
 	private String name;
+	
+	@JsonIgnore
 	private Queue<Message> messages;
 
 	public User(int id, String name) {
@@ -32,11 +38,9 @@ public class User {
 	
 	public void addMessages(Queue<Message> msgs) {
 		synchronized (messages) {
-			System.out.println("User.addMessage() BEFORE add " + msgs);
 			for (Message msg : msgs) {
 				messages.add(msg);	
 			}
-			System.out.println("User.addMessage() AFTER add " + msgs);
 		}
 	}
 
