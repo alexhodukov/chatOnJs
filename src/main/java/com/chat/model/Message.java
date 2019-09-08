@@ -2,10 +2,7 @@ package com.chat.model;
 
 import java.util.Date;
 
-import javax.validation.constraints.NotBlank;
-
 public class Message {
-	@NotBlank(message = "Message may not be null")
 	private String message;
 	private Date date;
 	private String from;

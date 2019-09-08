@@ -1,14 +1,19 @@
-var chatContainer = document.createElement('fieldset');
-chatContainer.innerHTML = "<legeng>KUKU</legend>";
+var config = {};
+var botName = {};
+var userName = "You";
+
+var chatContainer = document.createElement("fieldset");
 chatContainer.style.width = "400px";
-chatContainer.style.height = "500px";
+chatContainer.style.height = "520px";
 chatContainer.style.display = "block";
 chatContainer.style.border = "2px solid green";
 chatContainer.style.margin = "5px";
-// chatContainer.style.padding = "1px";
+chatContainer.style.padding = "1px";
 chatContainer.style.position = "absolute";
 chatContainer.style.bottom = "10px";
-chatContainer.style.right = "10px";
+
+var legendForChatContainer = document.createElement("legend");
+legendForChatContainer.textContent = "ChatDefault";
 
 var correspondence = document.createElement("textArea");
 correspondence.readOnly = "true";
@@ -33,7 +38,7 @@ inputMessage.style.padding = "5px";
 inputMessage.style.float = "left";
 inputMessage.style.resize = "none";
 
-var btnSend = document.createElement('button');
+var btnSend = document.createElement("button");
 btnSend.textContent = "Send";
 btnSend.id = "btnSend"; 
 btnSend.style.width = "50px";
@@ -45,7 +50,7 @@ btnSend.style.marginLeft = "2px";
 btnSend.style.float = "left";
 btnSend.style.top = "0px";
 
-var btnScrollMin = document.createElement('button');
+var btnScrollMin = document.createElement("button");
 btnScrollMin.id = "btnMin";
 btnScrollMin.textContent = "-";
 btnScrollMin.style.width = "20px";
@@ -55,17 +60,19 @@ btnScrollMin.style.margin = "1px";
 btnScrollMin.style.padding = "1px";
 btnScrollMin.style.float = "right";
 
-var divMinimaize = document.createElement('div');
-divMinimaize.style.width = "400px";
-divMinimaize.style.height = "30px";
-divMinimaize.style.display = "block";
-divMinimaize.style.border = "2px solid green";
-divMinimaize.style.margin = "5px";
-divMinimaize.style.position = "absolute";
-divMinimaize.style.bottom = "10px";
-divMinimaize.style.right = "10px";
+var containerMinimaize = document.createElement("fieldset");
+containerMinimaize.style.width = "400px";
+containerMinimaize.style.height = "45px";
+containerMinimaize.style.display = "block";
+containerMinimaize.style.border = "2px solid green";
+containerMinimaize.style.margin = "5px";
+containerMinimaize.style.position = "absolute";
+containerMinimaize.style.bottom = "10px";
 
-var btnScrollMax = document.createElement('button');
+var legendForContainerMinimaize = document.createElement("legend");
+legendForContainerMinimaize.textContent = "ChatDefault";
+
+var btnScrollMax = document.createElement("button");
 btnScrollMax.textContent = "[ ]";
 btnScrollMax.style.width = "20px";
 btnScrollMax.style.height = "20px";
@@ -76,14 +83,16 @@ btnScrollMax.style.float = "right";
 
 var parentElem = document.body;
 parentElem.style.cssText = "";
-parentElem.appendChild(divMinimaize);
+parentElem.appendChild(containerMinimaize);
 parentElem.appendChild(chatContainer);
 
+chatContainer.appendChild(legendForChatContainer);
 chatContainer.appendChild(correspondence);
 chatContainer.appendChild(btnScrollMin);
 chatContainer.appendChild(inputMessage);
 chatContainer.appendChild(btnSend);
-divMinimaize.appendChild(btnScrollMax);
+containerMinimaize.appendChild(legendForContainerMinimaize);
+containerMinimaize.appendChild(btnScrollMax);
 
 
 var css = "button:active {transform: scale(0.98); background: rgb(219, 212, 212);}";
@@ -95,20 +104,115 @@ if (style.styleSheet) {
 }
 document.getElementsByTagName('head')[0].appendChild(style);
 
+getConfig();
 
-btnScrollMin.addEventListener("click", function() {
-    console.log("btn scroll min");
-    chatMinimaize();
-    sessionStorage.setItem("chatMinimaize", true);
-});
+function getConfig() {
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', 'chat/config', true);
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+            config = JSON.parse(xhr.responseText);
+            console.log(config);
+            legendForChatContainer.textContent = config.title;
+            legendForContainerMinimaize.textContent = config.title;
+            botName = config.botName;
+            if (config.allowToDrag) {
+                addDragAndDrop();
+            }
+            if (config.allowToMinimaize) {
+                addEventListenerScroll();
+            } else {
+                chatMaximaize();
+            }
+            chatContainer["style"][config.position] = "10px";
+            containerMinimaize["style"][config.position] = "10px";
+            if (config.requireName) {
+                askUserName();
+            }
+        }
+    }
+    xhr.send();
+}
 
-btnScrollMax.addEventListener("click", function() {
-    console.log("btn scroll max");
-    chatMaximaize();
-    sessionStorage.setItem("chatMinimaize", false);
-    console.log("storage " + sessionStorage.getItem("chatMinimaize"));
-});
+function addDragAndDrop() {
+    var dragObject = {};
 
+    legendForChatContainer.addEventListener("mousedown", function (e) {
+        dragObject.elem = chatContainer;
+        dragObject.downX = e.pageX;
+        dragObject.downY = e.pageY;
+    })
+
+    legendForChatContainer.addEventListener("mousemove", function (e) {
+        if (!dragObject.elem) {
+            return;
+        }
+
+        if (!dragObject.startMoving) {
+            var moveX = e.pageX - dragObject.downX;
+            var moveY = e.pageY - dragObject.downY;
+            if ( Math.abs(moveX) < 2 && Math.abs(moveY) < 2 ) {
+                return;
+            }
+
+            var coords = getCoords(chatContainer);
+            dragObject.shiftX = dragObject.downX - coords.left;
+            dragObject.shiftY = dragObject.downY - coords.top;
+
+            chatContainer.style.zIndex = 50;
+            chatContainer.style.position = 'absolute';
+
+            dragObject.startMoving = true;
+
+            function getCoords(elem) {
+                var box = elem.getBoundingClientRect();
+                return {
+                    top: box.top + pageYOffset,
+                    left: box.left + pageXOffset
+                };
+            }
+        }
+
+        chatContainer.style.left = e.pageX - dragObject.shiftX + 'px';
+        chatContainer.style.top = e.pageY - dragObject.shiftY + 'px';
+
+        return false;
+    });
+
+    legendForChatContainer.addEventListener("mouseup", function () {
+        console.log("up");
+        dragObject = {};
+    });
+
+    chatContainer.addEventListener("dragstart", function() {
+        return false;
+    });
+}
+
+function addEventListenerScroll() {
+    btnScrollMin.addEventListener("click", function() {
+        console.log("btn scroll min");
+        chatMinimaize();
+        sessionStorage.setItem("chatMinimaize", true);
+    });
+
+    btnScrollMax.addEventListener("click", function() {
+        console.log("btn scroll max");
+        chatMaximaize();
+        sessionStorage.setItem("chatMinimaize", false);
+        console.log("storage " + sessionStorage.getItem("chatMinimaize"));
+    });
+}
+
+function askUserName() {
+    var name = prompt("Please, enter your name", "").trim();
+	while (!name) {
+        alert("Name must not be empty");
+        name = prompt("Please, enter your name", "").trim();
+    }
+    userName = name;
+    console.log(userName);
+}
 
 var isChatMinimaize = JSON.parse(sessionStorage.getItem("chatMinimaize"));
 if (isChatMinimaize == null) {
@@ -124,47 +228,24 @@ if (isChatMinimaize == null) {
 
 function chatMinimaize() {
     chatContainer.style.display = "none";
-    divMinimaize.style.display = "block";
+    containerMinimaize.style.display = "block";
 }
 
 function chatMaximaize() {
-    divMinimaize.style.display = "none";
+	containerMinimaize.style.display = "none";
     chatContainer.style.display = "block";
 }
 
 btnSend.addEventListener("click", function() {
     if (inputMessage.value.trim() != "") {
-        var message = createMessage(inputMessage.value, "You");
+        var message = createMessage(inputMessage.value, userName);
+        console.log("userName " + userName);
         saveMessage(message);
         addMessage(message);
-
-        var xhr = new XMLHttpRequest();
-
-        var json = JSON.stringify({
-            message : createMessage(inputMessage.value, "You"),
-            date : new Date(),
-            from : "YOU"
-        });
         
-        xhr.open("POST", '/chat/message', true)
-        xhr.setRequestHeader('Content-type', 'application/json; charset=utf-8');
-        
-        xhr.onreadystatechange = function() {
-            alert( this.responseText );
-        }
-        
-        // Отсылаем объект в формате JSON и с Content-Type application/json
-        // Сервер должен уметь такой Content-Type принимать и раскодировать
-        xhr.send(json);
-
-        var msg = {
-            
-        }
-
-    
         var botMessage = "Answer to \"" + inputMessage.value.toUpperCase() + "\"";
         setTimeout(() => {
-            var message = createMessage(botMessage, "Bot");
+            var message = createMessage(botMessage, botName);
             saveMessage(message);
             addMessage(message);
         }, 2000);
@@ -173,12 +254,13 @@ btnSend.addEventListener("click", function() {
 });
 
 function createMessage(message, from) {
-    var date = new Date();
-    var result;
-    result = date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds() +
-        " " + from + " : " + message + "\n";
-    return result;
-    
+    if (config.showDateTime) {
+        var date = new Date();
+        return date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds() +
+            " " + from + " : " + message + "\n";
+    } else {
+        return from + " : " + message + "\n";
+    }
 } 
 
 function addMessage(message) {
@@ -212,9 +294,3 @@ window.onload = function() {
         }
     }
 }
-
-
-
-
-   
-

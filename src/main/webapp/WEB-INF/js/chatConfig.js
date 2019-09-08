@@ -52,7 +52,6 @@ function getConfig() {
 	var xhr = new XMLHttpRequest();
 	xhr.open('GET', 'chat/config', true);
 	xhr.onreadystatechange = function() {
-		console.log(xhr.readyState + ", " + xhr.status);
 		if (xhr.readyState == 4 && xhr.status == 200) {
 			config = JSON.parse(xhr.responseText);
 			console.log(config);

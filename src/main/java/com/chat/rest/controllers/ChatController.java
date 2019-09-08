@@ -3,8 +3,6 @@ package com.chat.rest.controllers;
 
 import java.util.List;
 
-import javax.validation.Valid;
-
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,6 +15,8 @@ import com.chat.model.Config;
 import com.chat.model.Message;
 import com.chat.services.ServiceManager;
 
+
+
 @RestController
 @RequestMapping("/chat")
 public class ChatController {
@@ -28,7 +28,7 @@ public class ChatController {
 	}
 	
 	@PostMapping("/config")
-	public ResponseEntity<Void> createConfig(@Valid @RequestBody Config config) {
+	public ResponseEntity<Void> createConfig(@RequestBody Config config) {
 		System.out.println("Set Config " + config);
 //		config = new Config();
 //		config.setTitle("chat");
@@ -54,7 +54,7 @@ public class ChatController {
 	
 	
 	@PostMapping("/message")
-	public ResponseEntity<Void> createMessage(@Valid @RequestBody Message msg) {
+	public ResponseEntity<Void> createMessage(@RequestBody Message msg) {
 		System.out.println("Message " + msg);
 		serviceManager.addMessage(msg);
 		return new ResponseEntity<Void>(HttpStatus.CREATED);
