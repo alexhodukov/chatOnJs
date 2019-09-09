@@ -7,7 +7,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 
 public class User {
-	@JsonIgnore
 	private int id;
 	private String name;
 	
@@ -36,11 +35,9 @@ public class User {
 		this.name = name;
 	}
 	
-	public void addMessages(Queue<Message> msgs) {
+	public void addMessage(Message msg) {
 		synchronized (messages) {
-			for (Message msg : msgs) {
-				messages.add(msg);	
-			}
+			messages.add(msg);
 		}
 	}
 

@@ -2,8 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0b37a09c-d325-456d-b890-628e5eb00cd0" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/js/operator.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../java/com/chat/model/Message.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../java/com/chat/model/Message.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../java/com/chat/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../java/com/chat/model/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../java/com/chat/rest/controllers/ChatController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../java/com/chat/rest/controllers/ChatController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../java/com/chat/services/ServiceManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../java/com/chat/services/ServiceManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../java/com/chat/servlets/ControllerServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../java/com/chat/servlets/ControllerServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/css/operator.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/operator.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/js/chat.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/chat.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/operator.html" beforeDir="false" afterPath="$PROJECT_DIR$/operator.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/web.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WEB-INF1.rar" beforeDir="false" afterPath="$PROJECT_DIR$/../WEB-INF1.rar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WEB-INF2.rar" beforeDir="false" afterPath="$PROJECT_DIR$/../WEB-INF2.rar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/../index.jsp" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -16,11 +28,29 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/chat.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="392">
-              <caret line="200" column="40" selection-start-line="200" selection-start-column="40" selection-end-line="200" selection-end-column="40" />
+            <state relative-caret-position="85">
+              <caret line="236" column="35" lean-forward="true" selection-start-line="236" selection-start-column="35" selection-end-line="236" selection-end-column="35" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/operator.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="288">
+              <caret line="21" column="47" selection-start-line="21" selection-start-column="47" selection-end-line="21" selection-end-column="47" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/js/operator.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="129">
+              <caret line="31" column="26" selection-start-line="31" selection-start-column="15" selection-end-line="31" selection-end-column="26" />
             </state>
           </provider>
         </entry>
@@ -32,6 +62,7 @@
       <list>
         <option value="HTML File" />
         <option value="CSS File" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
@@ -39,6 +70,11 @@
     <findStrings>
       <find>showConfig</find>
       <find>userName</find>
+      <find>createMessage</find>
+      <find>saveMessage</find>
+      <find>getCorrespondence</find>
+      <find>getMessage</find>
+      <find>saveMessageSessionStorage</find>
       <find>console.log</find>
     </findStrings>
   </component>
@@ -53,9 +89,10 @@
         <option value="$PROJECT_DIR$/chat.html" />
         <option value="$PROJECT_DIR$/js/chatConfig.js" />
         <option value="$PROJECT_DIR$/config.html" />
-        <option value="$PROJECT_DIR$/operator.html" />
         <option value="$PROJECT_DIR$/css/operator.css" />
         <option value="$PROJECT_DIR$/js/chat.js" />
+        <option value="$PROJECT_DIR$/operator.html" />
+        <option value="$PROJECT_DIR$/js/operator.js" />
       </list>
     </option>
   </component>
@@ -152,18 +189,20 @@
       <workItem from="1567707030536" duration="8106000" />
       <workItem from="1567785690065" duration="6034000" />
       <workItem from="1567861519183" duration="23173000" />
-      <workItem from="1567899746309" duration="15078000" />
+      <workItem from="1567899746309" duration="23229000" />
+      <workItem from="1567967586313" duration="18596000" />
+      <workItem from="1567990660739" duration="7664000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="63037000" />
+    <option name="totallyTimeSpent" value="97448000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -176,7 +215,7 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" />
       <window_info anchor="bottom" id="Terminal" order="9" />
-      <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
+      <window_info active="true" anchor="bottom" id="Event Log" order="10" side_tool="true" visible="true" weight="0.24019608" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -207,41 +246,48 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/css/configStyle.css">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/config.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-17">
+        <state relative-caret-position="17">
           <caret line="5" selection-start-line="5" selection-end-line="5" selection-end-column="52" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/operator.html">
+    <entry file="file://$PROJECT_DIR$/css/configStyle.css">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/chatConfig.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="33" column="12" lean-forward="true" selection-start-line="33" selection-start-column="12" selection-end-line="33" selection-end-column="12" />
+        <state relative-caret-position="340">
+          <caret line="23" lean-forward="true" selection-start-line="23" selection-end-line="23" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/css/operator.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="104" column="13" selection-start-line="104" selection-start-column="13" selection-end-line="104" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/chatConfig.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-425">
-          <caret line="47" column="19" lean-forward="true" selection-start-line="37" selection-start-column="4" selection-end-line="47" selection-end-column="19" />
+        <state relative-caret-position="142">
+          <caret line="90" column="7" selection-start-line="90" selection-start-column="7" selection-end-line="90" selection-end-column="7" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/js/chat.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="392">
-          <caret line="200" column="40" selection-start-line="200" selection-start-column="40" selection-end-line="200" selection-end-column="40" />
+        <state relative-caret-position="85">
+          <caret line="236" column="35" lean-forward="true" selection-start-line="236" selection-start-column="35" selection-end-line="236" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/operator.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="288">
+          <caret line="21" column="47" selection-start-line="21" selection-start-column="47" selection-end-line="21" selection-end-column="47" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/operator.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="129">
+          <caret line="31" column="26" selection-start-line="31" selection-start-column="15" selection-end-line="31" selection-end-column="26" />
         </state>
       </provider>
     </entry>

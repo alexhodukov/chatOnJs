@@ -13,6 +13,7 @@
 	
 	<p><a href="chat.html">Chat</a></p>
 	<p><a href="config.html">Config</a></p>
+	<p><a href="operator.html">Admin</a></p>
 
 </body>
 </html>

@@ -6,6 +6,7 @@ public class Message {
 	private String message;
 	private Date date;
 	private String from;
+	private int fromId;
 	private int to;
 	
 	public Message() {
@@ -35,6 +36,14 @@ public class Message {
 		this.from = from;
 	}
 
+	public int getFromId() {
+		return fromId;
+	}
+
+	public void setFromId(int fromId) {
+		this.fromId = fromId;
+	}
+
 	public int getTo() {
 		return to;
 	}
@@ -45,7 +54,8 @@ public class Message {
 
 	@Override
 	public String toString() {
-		return "Message [message=" + message + ", date=" + date + ", from=" + from + ", to=" + to + "]";
+		return "Message [message=" + message + ", date=" + date + ", from=" + from + ", fromId=" + fromId + ", to=" + to
+				+ "]";
 	}
 
 	@Override
@@ -54,6 +64,7 @@ public class Message {
 		int result = 1;
 		result = prime * result + ((date == null) ? 0 : date.hashCode());
 		result = prime * result + ((from == null) ? 0 : from.hashCode());
+		result = prime * result + fromId;
 		result = prime * result + ((message == null) ? 0 : message.hashCode());
 		result = prime * result + to;
 		return result;
@@ -78,6 +89,8 @@ public class Message {
 				return false;
 		} else if (!from.equals(other.from))
 			return false;
+		if (fromId != other.fromId)
+			return false;
 		if (message == null) {
 			if (other.message != null)
 				return false;
@@ -88,5 +101,5 @@ public class Message {
 		return true;
 	}
 
-
+	
 }

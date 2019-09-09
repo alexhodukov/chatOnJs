@@ -10,27 +10,23 @@
     <legend>Operator's Dashboard</legend>
     <fieldset id="leftColumn">
         <input type="search" id="search">
-        <select id="sortBy" size="1">Sort By
+        <select id="sortBy" size="1">
             <option disabled selected>Sort by</option>
             <option value="id">ID</option>
-            <option value="Name">Name</option>
+            <option value="name">Name</option>
         </select>
         <select id="listUsers" size="40">
-            <option value="id">User1</option>
-            <option value="Name">User2</option>
-            <option value="id">User3</option>
-            <option value="Name">User4</option>
         </select>
     </fieldset>
     <fieldset id="rightColumn">
-        <legend>Active</legend>
+        <legend><span id="active">Active</span></legend>
         <button id="close">
             <img src="icons/close.png"/>
         </button>
         <fieldset id="chatContainer">
             <legend>Chat</legend>
             <textarea id="correspondence" readonly></textarea>
-            <textarea id="input-message"></textarea>
+            <textarea id="inputMessage"></textarea>
             <button id="send">send</button>
         </fieldset>
         <fieldset id="controlPanel">
@@ -38,6 +34,6 @@
         </fieldset>
     </fieldset>
 </fieldset>
-<script src="js/chatConfig.js" defer></script>
+<script src="js/operator.js" defer></script>
 </body>
 </html>

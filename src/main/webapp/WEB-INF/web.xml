@@ -7,15 +7,24 @@
 		<welcome-file>/index.jsp</welcome-file>
 	</welcome-file-list>
 	
-		<servlet>
+	<servlet>
 		<servlet-name>Controller</servlet-name>
 		<servlet-class>com.chat.servlets.ControllerServlet</servlet-class>
-<!-- 		<async-supported>true</async-supported> -->
 	</servlet>
 
 	<servlet-mapping>
 		<servlet-name>Controller</servlet-name>
 		<url-pattern>/chat</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>Admin</servlet-name>
+		<servlet-class>com.chat.servlets.AdminServlet</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>Admin</servlet-name>
+		<url-pattern>/chat/admin</url-pattern>
 	</servlet-mapping>
 	
 </web-app>

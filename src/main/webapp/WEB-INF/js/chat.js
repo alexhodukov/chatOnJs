@@ -1,8 +1,10 @@
+const ID_RECEIVER = 1;
 var isChatMinimaize;
 var user = {
     id: 0,
     userName: "User"
 }
+var config = {};
 
 var chatContainer;
 var legendForChatContainer;
@@ -15,8 +17,17 @@ var legendForContainerMinimaize;
 var btnScrollMax;
 var parentElem;
 
+function Message(message, date) {
+    this.message = message;
+    this.date = date;
+    this.from = user.userName;
+    this.fromId = user.id;
+    this.to = ID_RECEIVER;
+}
+
 createHtmlElements();
 getConfig();
+
 
 function getConfig() {
     var xhr = new XMLHttpRequest();
@@ -25,6 +36,7 @@ function getConfig() {
         if (xhr.readyState == 4 && xhr.status == 200) {
             config = JSON.parse(xhr.responseText);
             setConfig(config);
+            loadMessagesFromSessionStorage();
         }
     }
     xhr.send();
@@ -161,19 +173,50 @@ function chatMaximaize() {
 
 btnSend.addEventListener("click", function() {
     if (inputMessage.value.trim() != "") {
-        var message = createMessage(inputMessage.value, user.userName);
-        saveMessage(message);
+        var message = new Message(inputMessage.value, new Date());
+        saveMessageSessionStorage(message);
         addMessage(message);
-        
-        var botMessage = "Answer to \"" + inputMessage.value.toUpperCase() + "\"";
-        setTimeout(() => {
-            var message = createMessage(botMessage, botName);
-            saveMessage(message);
-            addMessage(message);
-        }, 2000);
+        sendMessage(message);
     }
     inputMessage.value = "";
 });
+
+function addMessage(message) {
+    function getFormatMessage() {
+        var formatDate = (config.showDateTime) ? (this.date.getHours() + ":" + this.date.getMinutes() + ":" +
+            this.date.getSeconds() + " ") : ("");
+        return formatDate + this.from + " : " + this.message + "\n";
+    }
+    var getFormatMessage = getFormatMessage.bind(message);
+
+    correspondence.value += getFormatMessage();
+    correspondence.scrollTop = correspondence.scrollHeight;
+}
+
+function saveMessageSessionStorage(message) {
+    var arMessage = [];
+    var objAr = JSON.parse(sessionStorage.getItem("messages"));
+    if (objAr) {
+        arMessage = objAr["messages"];
+        arMessage.push(message);
+    } else {
+        arMessage.push(message);
+    }
+    sessionStorage.setItem("messages", JSON.stringify({messages : arMessage}));
+}
+
+function sendMessage(message) {
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "chat/sendMessage", true);
+    xhr.setRequestHeader("Content-type", "application/json; charset=utf-8");
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState == 4) {
+            console.log("Successfully");
+        }
+    }
+    var json = JSON.stringify(message);
+    xhr.send(json);
+}
 
 function registerUser() {
     var xhr = new XMLHttpRequest();
@@ -196,53 +239,33 @@ function getNewMessages() {
     xhr.onreadystatechange = function() {
         if (xhr.readyState == 4 && xhr.status == 200) {
             var msg = JSON.parse(xhr.responseText);
-            console.log("Message from server " + msg.date + " " + msg.message + " " + msg.from);
-            console.log(xhr);
-            console.log(xhr.responseText);
+            if (msg) {
+                msg.date = new Date(msg.date);
+                addMessage(msg);
+                saveMessageSessionStorage(msg);
+                console.log(msg);
+            }
             getNewMessages();
         }
     }
     xhr.send();
 }
 
+
 function saveUserSessionStorage() {
     sessionStorage.setItem("user", JSON.stringify(user));
 }
 
-function createMessage(message, from) {
-    if (config.showDateTime) {
-        var date = new Date();
-        return date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds() +
-            " " + from + " : " + message + "\n";
-    } else {
-        return from + " : " + message + "\n";
-    }
-} 
 
-function addMessage(message) {
-    correspondence.value += message;
-    correspondence.scrollTop = correspondence.scrollHeight;
-}
-
-function saveMessage(message) {
-    var arMessage = [];
-    var objAr = JSON.parse(sessionStorage.getItem("messages"));
-    if (objAr) {
-        arMessage = objAr["messages"];
-        arMessage.push(message);
-    } else {
-        arMessage.push(message);
-    }
-    sessionStorage.setItem("messages", JSON.stringify({messages : arMessage}));
-}
-
-window.onload = function() {
+function loadMessagesFromSessionStorage() {
     if (correspondence.value == "") {
         var objAr = JSON.parse(sessionStorage.getItem("messages"));
         if (objAr) {
             arMessage = objAr["messages"];
             for (i = 0; i < arMessage.length; i++) {
-                addMessage(arMessage[i]);
+                var msg = arMessage[i];
+                msg.date = new Date(msg.date);
+                addMessage(msg);
             }
         }
     }
